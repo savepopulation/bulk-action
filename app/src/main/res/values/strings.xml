@@ -1,0 +1,11 @@
+<resources>
+    <!-- Application Strings -->
+    <string name="app_name">BulkAction</string>
+
+    <!-- Screen Titles -->
+    <string name="title_login">Login</string>
+    <string name="title_actions">BulkActions</string>
+
+    <!-- Dialog Messages -->
+    <string name="dialog_message_logging_in">Logging in.. Please wait!</string>
+</resources>

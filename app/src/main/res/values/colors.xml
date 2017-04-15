@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryLight">#C5CAE9</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primaryTextColor">#212121</color>
+    <color name="secondaryTextColor">#757575</color>
+    <color name="colorDivider">#EEEEEE</color>
+    <color name="colorPositiveGreen">#4CAF50</color>
+    <color name="colorNegativeRed">#F44336</color>
+    <color name="colorNotrYellow">#FFC107</color>
+    <color name="colorClosed">#f1f1f1</color>
+    <color name="colorWonGreen">#4CAF50</color>
+    <color name="colorLooseRed">#F44336</color>
+    <color name="colorPendingYellow">#FFC107</color>
+</resources>
