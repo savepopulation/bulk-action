@@ -15,9 +15,10 @@ public class Constants {
     // API
     public static final String BASE_URL = "https://api.instagram.com/v1/";
 
+    public static final String CLIENT_ID = "7ea2e2925f6244a9a348e1dfe99d00b3";
+    public static final String CLIENT_SECRET = "6d4537eca40c4f6fa8383760e05b2599";
 
-    public static final String CLIENT_ID = "";
-    public static final String REDIRECT_URI = "";
+    public static final String REDIRECT_URI = "instagram://connect";
     public static final String RESPONSE_TYPE = "token";
     public static final String SCOPE = "public_content";
 
@@ -26,7 +27,4 @@ public class Constants {
             CLIENT_ID + "&redirect_uri=" + REDIRECT_URI +
             "&response_type=" + RESPONSE_TYPE + "&scope=" + SCOPE;
 
-    public static final String KEY_INTENT_TOKEN = "token";
-
-    public static final String SHARED_KEY_TOKEN = "shared_key_token";
 }

@@ -14,6 +14,7 @@ import com.raqun.bulkaction.Constants;
 import com.raqun.bulkaction.R;
 import com.raqun.bulkaction.actions.ActionsActivity;
 import com.raqun.bulkaction.util.AlertUtil;
+import com.raqun.bulkaction.util.ValidationUtil;
 
 /**
  * Created by tyln on 15/04/2017.
@@ -69,6 +70,7 @@ public final class LoginActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.contains(KEY_ACCESS_TOKEN)) {
+                    AlertUtil.alert(getApplicationContext(), getAccessTokenFromURL(url));
                     startActivity(ActionsActivity.newIntent(LoginActivity.this));
                 }
                 return false;
@@ -95,8 +97,17 @@ public final class LoginActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Nullable
     private String getAccessTokenFromURL(@NonNull String url) {
-        final int index = url.indexOf(KEY_ACCESS_TOKEN);
-        return url.substring(index + KEY_ACCESS_TOKEN.length());
+        if (ValidationUtil.isNullOrEmpty(url)) {
+            return null;
+        }
+
+        try {
+            final int index = url.indexOf(KEY_ACCESS_TOKEN);
+            return url.substring(index + KEY_ACCESS_TOKEN.length());
+        } catch (IndexOutOfBoundsException ex) {
+            return null;
+        }
     }
 }
