@@ -12,7 +12,7 @@ import com.raqun.bulkaction.R;
  * Created by tyln on 15/04/2017.
  */
 
-public class ActionsActivity extends BaseActivity {
+public final class ActionsActivity extends BaseActivity {
     @NonNull
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, ActionsActivity.class);
