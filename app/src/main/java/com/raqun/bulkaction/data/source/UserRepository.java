@@ -11,6 +11,9 @@ import com.raqun.bulkaction.data.source.remote.UserRemoteDataSource;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
+
+
 /**
  * Created by tyln on 24/04/2017.
  */
@@ -43,12 +46,22 @@ public final class UserRepository implements UserDataSource {
         mUserLocalDataSource.saveUser(user);
     }
 
+    @Override
+    public Observable<User> getUser(@NonNull String token) {
+        return mUserRemoteDataSource.getUser(token);
+    }
+
     public void login(@NonNull User user) {
         saveUser(user);
     }
 
     public void setCurrentUser(@NonNull User user) {
         this.mCurrentUser = user;
+    }
+
+    @Nullable
+    public User getCurrentUser() {
+        return this.mCurrentUser;
     }
 
     public void clearCurrentUserCache() {

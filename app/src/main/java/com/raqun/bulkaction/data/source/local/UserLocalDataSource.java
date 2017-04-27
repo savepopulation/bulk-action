@@ -10,6 +10,9 @@ import com.raqun.bulkaction.data.source.UserDataSource;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
+
+
 /**
  * Created by tyln on 24/04/2017.
  */
@@ -28,5 +31,10 @@ public class UserLocalDataSource implements UserDataSource {
     @Override
     public void saveUser(@NonNull User user) {
         // Empty method
+    }
+
+    @Override
+    public Observable<User> getUser(@NonNull String token) {
+        return null;
     }
 }

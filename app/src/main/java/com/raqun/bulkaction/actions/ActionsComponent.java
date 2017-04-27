@@ -1,4 +1,4 @@
-package com.raqun.bulkaction.login;
+package com.raqun.bulkaction.actions;
 
 import android.support.annotation.NonNull;
 
@@ -8,10 +8,11 @@ import com.raqun.bulkaction.util.ActivityScoped;
 import dagger.Component;
 
 /**
- * Created by tyln on 24/04/2017.
+ * Created by tyln on 28/04/2017.
  */
+
 @Component(dependencies = UserRepositoryComponent.class)
 @ActivityScoped
-interface LoginComponent {
-    void inject(@NonNull LoginActivity activity);
+interface ActionsComponent {
+    void inject(@NonNull ActionsActivity activity);
 }
