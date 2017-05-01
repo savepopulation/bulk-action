@@ -1,5 +1,6 @@
 package com.raqun.bulkaction.actions;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

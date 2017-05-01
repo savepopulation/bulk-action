@@ -17,10 +17,6 @@ public final class ValidationUtil {
         return s == null || s.length() == 0 || s.trim().length() == 0;
     }
 
-    public static boolean isInitialAmountValid(double initialAmount) {
-        return initialAmount > 0;
-    }
-
     public static boolean isNullOrEmpty(@Nullable CharSequence s) {
         return s == null || s.length() == 0;
     }

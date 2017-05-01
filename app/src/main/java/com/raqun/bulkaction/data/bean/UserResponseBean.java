@@ -7,7 +7,7 @@ import com.raqun.bulkaction.data.User;
  * Created by tyln on 28/04/2017.
  */
 
-public class UserResponseBean {
+public class UserResponseBean extends BaseResponseBean {
     @SerializedName("data")
     private User user;
 

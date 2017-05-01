@@ -1,14 +1,19 @@
 package com.raqun.bulkaction.actions;
 
 import android.databinding.BaseObservable;
+import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.raqun.bulkaction.R;
 import com.raqun.bulkaction.data.User;
 import com.raqun.bulkaction.data.source.UserRepository;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -22,14 +27,14 @@ import io.reactivex.subjects.Subject;
  */
 
 public class ActionsViewModel {
-
     @NonNull
     private final UserRepository mUserRepository;
 
-    public final ObservableField<String> userName = new ObservableField<>();
+    public ObservableField<String> mUserName;
 
     ActionsViewModel(@NonNull UserRepository userRepository) {
         this.mUserRepository = userRepository;
+        this.mUserName = new ObservableField<>();
     }
 
     void start() {
@@ -44,7 +49,7 @@ public class ActionsViewModel {
 
                     @Override
                     public void onSuccess(User value) {
-                        Log.e("user name", "" + value.getUserName());
+                        mUserName.set(value.getUserName());
                     }
 
                     @Override
