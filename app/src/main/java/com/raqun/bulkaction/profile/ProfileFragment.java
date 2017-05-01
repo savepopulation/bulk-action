@@ -1,10 +1,8 @@
-package com.raqun.bulkaction.actions;
+package com.raqun.bulkaction.profile;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +10,20 @@ import android.view.ViewGroup;
 import com.raqun.bulkaction.BaseFragment;
 import com.raqun.bulkaction.Constants;
 import com.raqun.bulkaction.R;
-import com.raqun.bulkaction.databinding.FragmentActionsBinding;
+import com.raqun.bulkaction.databinding.FragmentProfileBinding;
 
 /**
  * Created by tyln on 27/04/2017.
  */
 
-public final class ActionsFragment extends BaseFragment {
+public final class ProfileFragment extends BaseFragment {
 
     @NonNull
-    private ActionsViewModel mActionsViewModel;
+    private ProfileViewModel mProfileViewModel;
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_actions;
+        return R.layout.fragment_profile;
     }
 
     @Override
@@ -37,18 +35,18 @@ public final class ActionsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = super.onCreateView(inflater, container, savedInstanceState);
-        final FragmentActionsBinding fragmentActionsBinding = FragmentActionsBinding.bind(view);
-        fragmentActionsBinding.setActionsViewModel(mActionsViewModel);
+        final FragmentProfileBinding fragmentProfileBinding = FragmentProfileBinding.bind(view);
+        fragmentProfileBinding.setProfileViewModel(mProfileViewModel);
         return view;
     }
 
-    public void setmActionsViewModel(@NonNull ActionsViewModel actionsViewModel) {
-        this.mActionsViewModel = actionsViewModel;
+    public void setmProfileViewModel(@NonNull ProfileViewModel profileViewModel) {
+        this.mProfileViewModel = profileViewModel;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mActionsViewModel.start();
+        mProfileViewModel.start();
     }
 }

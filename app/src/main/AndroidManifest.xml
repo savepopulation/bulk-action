@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".actions.ActionsActivity" />
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:theme="@style/AppThemeFullscreen" />
 
     </application>
 

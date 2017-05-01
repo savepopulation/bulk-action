@@ -1,21 +1,17 @@
-package com.raqun.bulkaction.actions;
+package com.raqun.bulkaction.profile;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
 
 import com.raqun.bulkaction.BaseActivity;
 import com.raqun.bulkaction.BulkActionApp;
 import com.raqun.bulkaction.Constants;
 import com.raqun.bulkaction.R;
 import com.raqun.bulkaction.ViewModelHolder;
-import com.raqun.bulkaction.data.source.DaggerUserRepositoryComponent;
 import com.raqun.bulkaction.data.source.UserRepository;
-import com.raqun.bulkaction.login.DaggerLoginComponent;
 
 import javax.inject.Inject;
 
@@ -23,7 +19,7 @@ import javax.inject.Inject;
  * Created by tyln on 15/04/2017.
  */
 
-public final class ActionsActivity extends BaseActivity {
+public final class ProfileActivity extends BaseActivity {
     private static final String TAG_ACTIONS_VIEW_MODEL = "actions_view_model";
 
     @NonNull
@@ -31,11 +27,11 @@ public final class ActionsActivity extends BaseActivity {
     UserRepository mUserRespository;
 
     @NonNull
-    ActionsViewModel mActionsViewModel;
+    ProfileViewModel mProfileViewModel;
 
     @NonNull
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, ActionsActivity.class);
+        return new Intent(context, ProfileActivity.class);
     }
 
     @Override
@@ -67,40 +63,40 @@ public final class ActionsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActionsFragment actionsFragment = findOrCreateViewFragment();
+        final ProfileFragment profileFragment = findOrCreateViewFragment();
         findOrRetainViewModelHolder();
-        actionsFragment.setmActionsViewModel(mActionsViewModel);
+        profileFragment.setmProfileViewModel(mProfileViewModel);
 
     }
 
-    private ActionsFragment findOrCreateViewFragment() {
-        ActionsFragment actionsFragment = (ActionsFragment) getSupportFragmentManager()
+    private ProfileFragment findOrCreateViewFragment() {
+        ProfileFragment profileFragment = (ProfileFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.framelayout_main);
-        if (actionsFragment == null) {
-            actionsFragment = new ActionsFragment();
+        if (profileFragment == null) {
+            profileFragment = new ProfileFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.framelayout_main, actionsFragment)
+                    .replace(R.id.framelayout_main, profileFragment)
                     .commit();
         }
 
-        return actionsFragment;
+        return profileFragment;
     }
 
     private void findOrRetainViewModelHolder() {
         @SuppressWarnings("unchecked")
-        ViewModelHolder<ActionsViewModel> retainedViewModel = (ViewModelHolder<ActionsViewModel>)
+        ViewModelHolder<ProfileViewModel> retainedViewModel = (ViewModelHolder<ProfileViewModel>)
                 getSupportFragmentManager().findFragmentByTag(TAG_ACTIONS_VIEW_MODEL);
 
         if (retainedViewModel != null && retainedViewModel.getViewModel() != null) {
-            mActionsViewModel = retainedViewModel.getViewModel();
+            mProfileViewModel = retainedViewModel.getViewModel();
         } else {
-            DaggerActionsComponent.builder()
+            DaggerProfileComponent.builder()
                     .userRepositoryComponent(((BulkActionApp) getApplication()).getUserRepositoryComponent())
                     .build()
                     .inject(this);
-            mActionsViewModel = new ActionsViewModel(mUserRespository);
+            mProfileViewModel = new ProfileViewModel(mUserRespository);
             getSupportFragmentManager().beginTransaction()
-                    .add(ViewModelHolder.newInstance(mActionsViewModel), TAG_ACTIONS_VIEW_MODEL)
+                    .add(ViewModelHolder.newInstance(mProfileViewModel), TAG_ACTIONS_VIEW_MODEL)
                     .commit();
         }
     }

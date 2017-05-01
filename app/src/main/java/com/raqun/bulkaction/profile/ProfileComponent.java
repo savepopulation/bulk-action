@@ -1,4 +1,4 @@
-package com.raqun.bulkaction.actions;
+package com.raqun.bulkaction.profile;
 
 import android.support.annotation.NonNull;
 
@@ -13,6 +13,6 @@ import dagger.Component;
 
 @Component(dependencies = UserRepositoryComponent.class)
 @ActivityScoped
-interface ActionsComponent {
-    void inject(@NonNull ActionsActivity activity);
+interface ProfileComponent {
+    void inject(@NonNull ProfileActivity activity);
 }

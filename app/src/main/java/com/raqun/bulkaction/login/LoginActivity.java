@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -14,10 +13,9 @@ import com.raqun.bulkaction.BaseActivity;
 import com.raqun.bulkaction.BulkActionApp;
 import com.raqun.bulkaction.Constants;
 import com.raqun.bulkaction.R;
-import com.raqun.bulkaction.actions.ActionsActivity;
+import com.raqun.bulkaction.profile.ProfileActivity;
 import com.raqun.bulkaction.data.User;
 import com.raqun.bulkaction.data.source.UserRepository;
-import com.raqun.bulkaction.data.source.UserRepositoryComponent;
 import com.raqun.bulkaction.util.AlertUtil;
 import com.raqun.bulkaction.util.ValidationUtil;
 
@@ -80,7 +78,7 @@ public final class LoginActivity extends BaseActivity {
         mProgressDialogLogin.show();
 
         if (UserRepository.getCurrentUser() != null) {
-            startActivity(ActionsActivity.newIntent(LoginActivity.this));
+            startActivity(ProfileActivity.newIntent(LoginActivity.this));
             finish();
             return;
         }
@@ -93,7 +91,7 @@ public final class LoginActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.contains(KEY_ACCESS_TOKEN)) {
                     login(getAccessTokenFromURL(url));
-                    startActivity(ActionsActivity.newIntent(LoginActivity.this));
+                    startActivity(ProfileActivity.newIntent(LoginActivity.this));
                     finish();
                 }
                 return false;
