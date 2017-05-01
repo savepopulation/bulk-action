@@ -17,25 +17,28 @@ import com.raqun.bulkaction.databinding.FragmentActionsBinding;
  * Created by tyln on 27/04/2017.
  */
 
-public class ActionsFragment extends Fragment {
+public final class ActionsFragment extends BaseFragment {
 
+    @NonNull
     private ActionsViewModel mActionsViewModel;
 
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_actions;
+    }
+
+    @Override
+    protected int getMenuRes() {
+        return Constants.NO_RES;
+    }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_actions, container, false);
-
-        FragmentActionsBinding fragmentActionsBinding = FragmentActionsBinding.bind(view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = super.onCreateView(inflater, container, savedInstanceState);
+        final FragmentActionsBinding fragmentActionsBinding = FragmentActionsBinding.bind(view);
         fragmentActionsBinding.setActionsViewModel(mActionsViewModel);
-
-        setHasOptionsMenu(true);
-
         return view;
-
     }
 
     public void setmActionsViewModel(@NonNull ActionsViewModel actionsViewModel) {

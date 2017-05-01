@@ -92,15 +92,15 @@ public final class ActionsActivity extends BaseActivity {
                 getSupportFragmentManager().findFragmentByTag(TAG_ACTIONS_VIEW_MODEL);
 
         if (retainedViewModel != null && retainedViewModel.getViewModel() != null) {
-            this.mActionsViewModel = retainedViewModel.getViewModel();
+            mActionsViewModel = retainedViewModel.getViewModel();
         } else {
             DaggerActionsComponent.builder()
                     .userRepositoryComponent(((BulkActionApp) getApplication()).getUserRepositoryComponent())
                     .build()
                     .inject(this);
-            this.mActionsViewModel = new ActionsViewModel(mUserRespository);
+            mActionsViewModel = new ActionsViewModel(mUserRespository);
             getSupportFragmentManager().beginTransaction()
-                    .add(ViewModelHolder.newInstance(this.mActionsViewModel), TAG_ACTIONS_VIEW_MODEL)
+                    .add(ViewModelHolder.newInstance(mActionsViewModel), TAG_ACTIONS_VIEW_MODEL)
                     .commit();
         }
     }

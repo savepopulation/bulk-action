@@ -1,9 +1,10 @@
 package com.raqun.bulkaction.data.api;
 
 
-import com.raqun.bulkaction.data.bean.UserWrapper;
+import com.raqun.bulkaction.data.bean.UserResponseBean;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -12,5 +13,5 @@ import retrofit2.http.Query;
  */
 public interface BulkActionServices {
     @GET("users/self/")
-    Observable<UserWrapper> getUser(@Query("access_token") String token);
+    Single<UserResponseBean> getUser();
 }

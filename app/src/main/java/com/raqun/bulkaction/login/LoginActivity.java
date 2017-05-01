@@ -30,7 +30,6 @@ import javax.inject.Inject;
 public final class LoginActivity extends BaseActivity {
     private static final String KEY_ACCESS_TOKEN = "access_token=";
 
-
     @NonNull
     @Inject
     UserRepository mUserRepository;
@@ -70,7 +69,6 @@ public final class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         DaggerLoginComponent.builder()
                 .userRepositoryComponent(((BulkActionApp) getApplication()).getUserRepositoryComponent())
                 .build()
@@ -79,6 +77,13 @@ public final class LoginActivity extends BaseActivity {
         mProgressDialogLogin = AlertUtil.createProgressDialog(this,
                 getString(R.string.dialog_message_logging_in),
                 false);
+        mProgressDialogLogin.show();
+
+        if (UserRepository.getCurrentUser() != null) {
+            startActivity(ActionsActivity.newIntent(LoginActivity.this));
+            finish();
+            return;
+        }
 
         final WebView webViewLogin = (WebView) findViewById(R.id.webview_login);
         webViewLogin.getSettings().setJavaScriptEnabled(true);
@@ -103,7 +108,6 @@ public final class LoginActivity extends BaseActivity {
             }
         });
 
-        mProgressDialogLogin.show();
         webViewLogin.loadUrl(Constants.LOGIN_URL);
     }
 

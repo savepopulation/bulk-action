@@ -8,10 +8,19 @@ import com.raqun.bulkaction.data.source.UserDataSource;
 import com.raqun.bulkaction.data.source.local.UserLocalDataSource;
 import com.raqun.bulkaction.data.source.remote.UserRemoteDataSource;
 
+import java.util.concurrent.Callable;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.observers.SubscriberCompletableObserver;
+import io.reactivex.internal.operators.single.SingleSubscribeOn;
+import io.reactivex.internal.subscribers.SinglePostCompleteSubscriber;
 
 
 /**
@@ -27,13 +36,14 @@ public final class UserRepository implements UserDataSource {
     private final UserRemoteDataSource mUserRemoteDataSource;
 
     @Nullable
-    private User mCurrentUser;
+    private static volatile User mCurrentUser;
 
     @Inject
     UserRepository(@NonNull @Local UserLocalDataSource userLocalDataSource,
                    @NonNull @Remote UserRemoteDataSource userRemoteDataSource) {
         this.mUserLocalDataSource = userLocalDataSource;
         this.mUserRemoteDataSource = userRemoteDataSource;
+        mCurrentUser = initUser();
     }
 
     @Override
@@ -42,29 +52,27 @@ public final class UserRepository implements UserDataSource {
             return;
         }
 
-        this.mCurrentUser = user;
+        mCurrentUser = user;
         mUserLocalDataSource.saveUser(user);
     }
 
     @Override
-    public Observable<User> getUser(@NonNull String token) {
-        return mUserRemoteDataSource.getUser(token);
+    public Single<User> getUser() {
+        return mUserRemoteDataSource.getUser();
     }
 
     public void login(@NonNull User user) {
         saveUser(user);
     }
 
-    public void setCurrentUser(@NonNull User user) {
-        this.mCurrentUser = user;
-    }
-
     @Nullable
-    public User getCurrentUser() {
-        return this.mCurrentUser;
+    public static User getCurrentUser() {
+        return mCurrentUser;
     }
 
-    public void clearCurrentUserCache() {
-        this.mCurrentUser = null;
+    @Override
+    @Nullable
+    public User initUser() {
+       return mUserLocalDataSource.initUser();
     }
 }

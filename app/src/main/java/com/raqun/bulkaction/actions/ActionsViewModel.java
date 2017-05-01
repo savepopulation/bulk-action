@@ -10,6 +10,7 @@ import com.raqun.bulkaction.data.User;
 import com.raqun.bulkaction.data.source.UserRepository;
 
 import io.reactivex.Observer;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -20,39 +21,35 @@ import io.reactivex.subjects.Subject;
  * Created by tyln on 27/04/2017.
  */
 
-public class ActionsViewModel extends BaseObservable {
+public class ActionsViewModel {
+
     @NonNull
     private final UserRepository mUserRepository;
 
     public final ObservableField<String> userName = new ObservableField<>();
 
-    public ActionsViewModel(@NonNull UserRepository userRepository) {
+    ActionsViewModel(@NonNull UserRepository userRepository) {
         this.mUserRepository = userRepository;
     }
 
-    public void start() {
-        mUserRepository.getUser(mUserRepository.getCurrentUser().getToken())
+    void start() {
+        mUserRepository.getUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<User>() {
+                .subscribe(new SingleObserver<User>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        // Empty method
                     }
 
                     @Override
-                    public void onNext(User value) {
-                        userName.set(value.getUserName());
+                    public void onSuccess(User value) {
+                        Log.e("user name", "" + value.getUserName());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                        Log.e("error", "error");
                     }
                 });
     }

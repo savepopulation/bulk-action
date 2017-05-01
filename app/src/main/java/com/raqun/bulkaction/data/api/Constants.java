@@ -9,4 +9,5 @@ final class Constants {
     }
 
     static final int DEFAULT_TIMEOUT = 60000;
+    static final String QUERY_PARAM_TOKEN = "access_token";
 }

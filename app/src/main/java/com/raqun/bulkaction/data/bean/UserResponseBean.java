@@ -7,7 +7,11 @@ import com.raqun.bulkaction.data.User;
  * Created by tyln on 28/04/2017.
  */
 
-public class UserWrapper {
+public class UserResponseBean {
     @SerializedName("data")
-    public User user;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
 }
