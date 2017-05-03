@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -30,7 +29,7 @@
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/no_image" />
+                app:imageUrl="@{profileViewModel.mUserObservable.get().getProfilePictureUrl()}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,41 +42,38 @@
                     android:id="@+id/textview_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{profileViewModel.mUserName}"
+                    android:text="@{profileViewModel.mUserObservable.get().getUserName()}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp"
                     android:textStyle="bold" />
+
 
                 <TextView
                     android:id="@+id/textview_following"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/secondaryTextColor"
                     android:layout_marginTop="@dimen/size_small"
-                    android:text="@{`Following:` + profileViewModel.mFolowsCount }"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="@{`Following:` + profileViewModel.mUserObservable.get().getCounts().getFollows()}"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textview_followers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{`Followers:` + profileViewModel.mUserObservable.get().getCounts().getFollowedBy() }"
                     android:textColor="@color/secondaryTextColor"
-                    android:text="@{`Followers:` + profileViewModel.mFollowedByCount }"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textview_posts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{`Posts:` + profileViewModel.mUserObservable.get().getCounts().getMedia() }"
                     android:textColor="@color/secondaryTextColor"
-                    android:text="@{`Posts:` + profileViewModel.mPostsCount }"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
-
 
         </LinearLayout>
 

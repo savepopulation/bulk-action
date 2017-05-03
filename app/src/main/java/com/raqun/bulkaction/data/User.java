@@ -69,4 +69,8 @@ public final class User {
     public Counts getCounts() {
         return counts;
     }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
 }

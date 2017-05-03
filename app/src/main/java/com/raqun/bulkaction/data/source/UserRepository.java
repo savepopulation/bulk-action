@@ -1,7 +1,9 @@
 package com.raqun.bulkaction.data.source;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.raqun.bulkaction.data.User;
 import com.raqun.bulkaction.data.source.UserDataSource;
@@ -73,6 +75,6 @@ public final class UserRepository implements UserDataSource {
     @Override
     @Nullable
     public User initUser() {
-       return mUserLocalDataSource.initUser();
+        return mUserLocalDataSource.initUser();
     }
 }

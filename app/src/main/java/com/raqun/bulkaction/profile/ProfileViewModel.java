@@ -1,13 +1,17 @@
 package com.raqun.bulkaction.profile;
 
+import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.raqun.bulkaction.data.Counts;
 import com.raqun.bulkaction.data.User;
 import com.raqun.bulkaction.data.source.UserRepository;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -17,29 +21,16 @@ import io.reactivex.schedulers.Schedulers;
  * Created by tyln on 27/04/2017.
  */
 
-public class ProfileViewModel {
+public final class ProfileViewModel {
     @NonNull
     private final UserRepository mUserRepository;
 
     @NonNull
-    public final ObservableField<String> mUserName;
-
-    @NonNull
-    public final ObservableField<Long> mFolowsCount;
-
-    @NonNull
-    public final ObservableField<Long> mFollowedByCount;
-
-    @NonNull
-    public final ObservableField<Long> mPostsCount;
+    public final ObservableField<User> mUserObservable;
 
     ProfileViewModel(@NonNull UserRepository userRepository) {
         this.mUserRepository = userRepository;
-
-        this.mUserName = new ObservableField<>();
-        this.mFolowsCount = new ObservableField<>();
-        this.mFollowedByCount = new ObservableField<>();
-        this.mPostsCount = new ObservableField<>();
+        this.mUserObservable = new ObservableField<>();
     }
 
     void start() {
@@ -54,13 +45,7 @@ public class ProfileViewModel {
 
                     @Override
                     public void onSuccess(User value) {
-                        mUserName.set(value.getUserName());
-                        final Counts counts = value.getCounts();
-                        if (counts != null) {
-                            mFolowsCount.set(counts.getFollows());
-                            mFollowedByCount.set(counts.getFollowedBy());
-                            mPostsCount.set(counts.getMedia());
-                        }
+                        mUserObservable.set(value);
                     }
 
                     @Override
@@ -68,5 +53,12 @@ public class ProfileViewModel {
                         Log.e("error", "error");
                     }
                 });
+    }
+
+    @BindingAdapter("imageUrl")
+    public static void setImageUrl(ImageView imageView, String url) {
+        Picasso.with(imageView.getContext())
+                .load(url)
+                .into(imageView);
     }
 }

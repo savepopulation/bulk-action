@@ -66,9 +66,9 @@ public final class ProfileActivity extends BaseActivity {
         final ProfileFragment profileFragment = findOrCreateViewFragment();
         findOrRetainViewModelHolder();
         profileFragment.setmProfileViewModel(mProfileViewModel);
-
     }
 
+    @NonNull
     private ProfileFragment findOrCreateViewFragment() {
         ProfileFragment profileFragment = (ProfileFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.framelayout_main);
