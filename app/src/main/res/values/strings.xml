@@ -8,4 +8,11 @@
 
     <!-- Dialog Messages -->
     <string name="dialog_message_logging_in">Logging in.. Please wait!</string>
+
+    <!-- Action Names -->
+    <string name="bulk_action_unfollow">Unfollow</string>
+    <string name="bulk_action_unlike">Unlike</string>
+    <string name="bulk_action_delete_posts">Delete Posts</string>
+    <string name="bulk_action_delete_comments">Delete Comments</string>
+
 </resources>

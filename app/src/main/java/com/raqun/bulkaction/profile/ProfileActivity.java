@@ -11,6 +11,7 @@ import com.raqun.bulkaction.BulkActionApp;
 import com.raqun.bulkaction.Constants;
 import com.raqun.bulkaction.R;
 import com.raqun.bulkaction.ViewModelHolder;
+import com.raqun.bulkaction.data.factory.BulkActionFactory;
 import com.raqun.bulkaction.data.source.UserRepository;
 
 import javax.inject.Inject;
@@ -24,9 +25,6 @@ public final class ProfileActivity extends BaseActivity {
 
     @NonNull
     @Inject
-    UserRepository mUserRespository;
-
-    @NonNull
     ProfileViewModel mProfileViewModel;
 
     @NonNull
@@ -92,9 +90,10 @@ public final class ProfileActivity extends BaseActivity {
         } else {
             DaggerProfileComponent.builder()
                     .userRepositoryComponent(((BulkActionApp) getApplication()).getUserRepositoryComponent())
+                    .profileModule(new ProfileModule(BulkActionFactory.getBulkActions(this)))
                     .build()
                     .inject(this);
-            mProfileViewModel = new ProfileViewModel(mUserRespository);
+
             getSupportFragmentManager().beginTransaction()
                     .add(ViewModelHolder.newInstance(mProfileViewModel), TAG_ACTIONS_VIEW_MODEL)
                     .commit();

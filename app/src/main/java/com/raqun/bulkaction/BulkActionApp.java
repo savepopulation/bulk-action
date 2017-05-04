@@ -3,12 +3,17 @@ package com.raqun.bulkaction;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
+import com.raqun.bulkaction.data.BulkAction;
 import com.raqun.bulkaction.data.api.ApiModule;
+import com.raqun.bulkaction.data.factory.BulkActionFactory;
 import com.raqun.bulkaction.data.source.DaggerUserRepositoryComponent;
 import com.raqun.bulkaction.data.source.UserRepository;
 import com.raqun.bulkaction.data.source.UserRepositoryComponent;
 import com.raqun.bulkaction.data.source.UserRepositoryModule;
 import com.squareup.leakcanary.LeakCanary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tyln on 15/04/2017.

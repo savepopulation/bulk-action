@@ -1,15 +1,25 @@
 package com.raqun.bulkaction.profile;
 
 import android.databinding.BindingAdapter;
+import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
+import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.raqun.bulkaction.data.BulkAction;
 import com.raqun.bulkaction.data.Counts;
 import com.raqun.bulkaction.data.User;
+import com.raqun.bulkaction.data.factory.BulkActionFactory;
 import com.raqun.bulkaction.data.source.UserRepository;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.SingleObserver;
@@ -22,15 +32,22 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public final class ProfileViewModel {
+
     @NonNull
     private final UserRepository mUserRepository;
 
     @NonNull
     public final ObservableField<User> mUserObservable;
 
-    ProfileViewModel(@NonNull UserRepository userRepository) {
+    public final ObservableList<BulkAction> mBulkActions;
+
+    @Inject
+    ProfileViewModel(@NonNull UserRepository userRepository, @NonNull List<BulkAction> actions) {
         this.mUserRepository = userRepository;
+
         this.mUserObservable = new ObservableField<>();
+        this.mBulkActions = new ObservableArrayList<>();
+        mBulkActions.addAll(actions);
     }
 
     void start() {
@@ -55,10 +72,5 @@ public final class ProfileViewModel {
                 });
     }
 
-    @BindingAdapter("imageUrl")
-    public static void setImageUrl(ImageView imageView, String url) {
-        Picasso.with(imageView.getContext())
-                .load(url)
-                .into(imageView);
-    }
+
 }
