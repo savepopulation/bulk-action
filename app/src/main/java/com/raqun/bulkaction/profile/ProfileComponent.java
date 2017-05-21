@@ -11,8 +11,8 @@ import dagger.Component;
  * Created by tyln on 28/04/2017.
  */
 
-@Component(dependencies = UserRepositoryComponent.class, modules = ProfileModule.class)
 @ActivityScoped
+@Component(dependencies = UserRepositoryComponent.class, modules = ProfileModule.class)
 interface ProfileComponent {
     void inject(@NonNull ProfileActivity activity);
 }

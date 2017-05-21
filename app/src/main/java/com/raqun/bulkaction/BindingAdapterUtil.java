@@ -1,14 +1,12 @@
 package com.raqun.bulkaction;
 
 import android.databinding.BindingAdapter;
-import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.raqun.bulkaction.data.BulkAction;
-import com.raqun.bulkaction.profile.ActionsAdapter;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -26,12 +24,5 @@ public final class BindingAdapterUtil {
         Picasso.with(imageView.getContext())
                 .load(url)
                 .into(imageView);
-    }
-
-    @BindingAdapter("bulkActions")
-    public static void setBulkActions(@NonNull ListView listView,
-                                      @NonNull ObservableList<BulkAction> bulkActions) {
-        final ActionsAdapter actionsAdapter = new ActionsAdapter(bulkActions, listView.getContext());
-        listView.setAdapter(actionsAdapter);
     }
 }

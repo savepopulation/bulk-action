@@ -5,10 +5,14 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.raqun.bulkaction.BaseViewModel;
+import com.raqun.bulkaction.R;
 import com.raqun.bulkaction.data.BulkAction;
 import com.raqun.bulkaction.data.Counts;
 import com.raqun.bulkaction.data.User;
@@ -31,26 +35,27 @@ import io.reactivex.schedulers.Schedulers;
  * Created by tyln on 27/04/2017.
  */
 
-public final class ProfileViewModel {
+public final class ProfileViewModel implements BaseViewModel<ProfileNavigator> {
 
     @NonNull
     private final UserRepository mUserRepository;
 
-    @NonNull
-    public final ObservableField<User> mUserObservable;
+    @Nullable
+    private ProfileNavigator mProfileNavigator;
 
-    public final ObservableList<BulkAction> mBulkActions;
+    @NonNull
+    public final ObservableField<User> mUserObservable = new ObservableField<>();
 
     @Inject
-    ProfileViewModel(@NonNull UserRepository userRepository, @NonNull List<BulkAction> actions) {
+    ProfileViewModel(@NonNull UserRepository userRepository,
+                     @Nullable ProfileNavigator profileNavigator) {
         this.mUserRepository = userRepository;
+        this.mProfileNavigator = profileNavigator;
 
-        this.mUserObservable = new ObservableField<>();
-        this.mBulkActions = new ObservableArrayList<>();
-        mBulkActions.addAll(actions);
+        fetchUserDetails();
     }
 
-    void start() {
+    private void fetchUserDetails() {
         mUserRepository.getUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -72,5 +77,35 @@ public final class ProfileViewModel {
                 });
     }
 
+    @Override
+    public void onActivityDestroyed() {
+        this.mProfileNavigator = null;
+    }
 
+    @Override
+    public void setNavigator(ProfileNavigator navigator) {
+        this.mProfileNavigator = navigator;
+    }
+
+    public void onActionRequired(View view) {
+        if (mProfileNavigator == null) return;
+
+        switch (view.getId()) {
+            case R.id.button_following:
+                mProfileNavigator.navigateToFollowings();
+                break;
+
+            case R.id.button_likes:
+                mProfileNavigator.navigateToLikes();
+                break;
+
+            case R.id.button_posts:
+                mProfileNavigator.navigateToPosts();
+                break;
+
+            case R.id.button_comments:
+                mProfileNavigator.navigateToComments();
+                break;
+        }
+    }
 }

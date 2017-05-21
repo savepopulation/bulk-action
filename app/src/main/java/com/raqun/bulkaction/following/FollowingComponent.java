@@ -1,8 +1,7 @@
-package com.raqun.bulkaction.followers;
+package com.raqun.bulkaction.following;
 
 import android.support.annotation.NonNull;
 
-import com.raqun.bulkaction.data.source.UserRepository;
 import com.raqun.bulkaction.data.source.UserRepositoryComponent;
 import com.raqun.bulkaction.util.ActivityScoped;
 
@@ -14,6 +13,6 @@ import dagger.Component;
 
 @Component(dependencies = {UserRepositoryComponent.class})
 @ActivityScoped
-public interface FollowingComponent {
+interface FollowingComponent {
     void inject(@NonNull FollowingActivity activity);
 }

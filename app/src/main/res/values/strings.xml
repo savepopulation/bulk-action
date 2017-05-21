@@ -5,6 +5,10 @@
     <!-- Screen Titles -->
     <string name="title_login">Login</string>
     <string name="title_actions">BulkActions</string>
+    <string name="title_following">Following</string>
+    <string name="title_likes">Likes</string>
+    <string name="title_posts">Posts</string>
+    <string name="title_comments">Comments</string>
 
     <!-- Dialog Messages -->
     <string name="dialog_message_logging_in">Logging in.. Please wait!</string>

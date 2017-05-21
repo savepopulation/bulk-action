@@ -7,7 +7,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="profileViewModel"
+            name="viewModel"
             type="com.raqun.bulkaction.profile.ProfileViewModel" />
     </data>
 
@@ -37,7 +37,7 @@
                     android:id="@+id/textview_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{profileViewModel.mUserObservable.get().getUserName()}"
+                    android:text="@{viewModel.mUserObservable.get().getUserName()}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_small"
-                    android:text="@{`Following:` + profileViewModel.mUserObservable.get().getCounts().getFollows()}"
+                    android:text="@{`Following:` + viewModel.mUserObservable.get().getCounts().getFollows()}"
                     android:textColor="@color/secondaryTextColor"
                     android:textSize="16sp" />
 
@@ -55,7 +55,7 @@
                     android:id="@+id/textview_followers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{`Followers:` + profileViewModel.mUserObservable.get().getCounts().getFollowedBy() }"
+                    android:text="@{`Followers:` + viewModel.mUserObservable.get().getCounts().getFollowedBy() }"
                     android:textColor="@color/secondaryTextColor"
                     android:textSize="16sp" />
 
@@ -63,7 +63,7 @@
                     android:id="@+id/textview_posts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{`Posts:` + profileViewModel.mUserObservable.get().getCounts().getMedia() }"
+                    android:text="@{`Posts:` + viewModel.mUserObservable.get().getCounts().getMedia() }"
                     android:textColor="@color/secondaryTextColor"
                     android:textSize="16sp" />
 
@@ -73,15 +73,54 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_gravity="end|center_vertical"
-                app:imageUrl="@{profileViewModel.mUserObservable.get().getProfilePictureUrl()}" />
+                app:imageUrl="@{viewModel.mUserObservable.get().getProfilePictureUrl()}" />
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/listview_actions"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:bulkActions="@{profileViewModel.mBulkActions}" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/button_following"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_large"
+                android:onClick="@{viewModel::onActionRequired}"
+                android:text="Unfollow"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/button_likes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_large"
+                android:onClick="@{viewModel.onActionRequired}"
+                android:text="Unlike"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/button_posts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_large"
+                android:onClick="@{viewModel.onActionRequired}"
+                android:text="Delete Post"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/button_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_large"
+                android:onClick="@{viewModel.onActionRequired}"
+                android:text="Delete Comment"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -23,9 +23,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".profile.ProfileActivity"
-            android:theme="@style/AppThemeFullscreen" />
+        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".following.FollowingActivity" />
+        <activity android:name=".likes.LikesActivity" />
+        <activity android:name=".posts.PostsActivity" />
+        <activity android:name=".comments.CommentsActivity" />
 
     </application>
 
