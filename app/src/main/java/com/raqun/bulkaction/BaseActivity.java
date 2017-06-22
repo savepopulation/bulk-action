@@ -97,6 +97,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected int getNavigationType() {
-        return Constants.NO_RES;
+        return NAVIGATION_BACK;
     }
 }
