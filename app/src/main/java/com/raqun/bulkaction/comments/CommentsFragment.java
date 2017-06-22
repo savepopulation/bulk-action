@@ -39,11 +39,6 @@ public final class CommentsFragment extends BaseFragment
         return R.layout.fragment_comments;
     }
 
-    @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

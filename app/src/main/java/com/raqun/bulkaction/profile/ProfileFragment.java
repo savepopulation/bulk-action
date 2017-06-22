@@ -34,11 +34,6 @@ public final class ProfileFragment extends BaseFragment
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     public void setViewModel(@NonNull ProfileViewModel viewModel) {
         this.mViewModel = viewModel;
     }

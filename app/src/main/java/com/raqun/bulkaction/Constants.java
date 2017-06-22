@@ -15,8 +15,8 @@ public class Constants {
     // API
     public static final String BASE_URL = "https://api.instagram.com/v1/";
 
-    public static final String CLIENT_ID = "9f41826c7dea4bcb8981d26c20df06eb";
-    //public static final String CLIENT_SECRET = "6d4537eca40c4f6fa8383760e05b2599";
+    public static final String CLIENT_ID = "your_client_id";
+    //public static final String CLIENT_SECRET = "your_client_secret";
 
     public static final String REDIRECT_URI = "http://www.raqun.com";
     public static final String RESPONSE_TYPE = "token";

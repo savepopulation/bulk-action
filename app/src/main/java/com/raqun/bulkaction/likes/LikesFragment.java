@@ -36,11 +36,6 @@ public final class LikesFragment extends BaseFragment
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     public void setViewModel(@NonNull LikesViewModel viewModel) {
         this.mViewModel = viewModel;
     }

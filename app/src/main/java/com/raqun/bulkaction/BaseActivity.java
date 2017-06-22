@@ -31,16 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @LayoutRes
     protected abstract int getLayoutRes();
 
-    @MenuRes
-    protected abstract int getMenuRes();
-
-    @StringRes
-    protected abstract int getScreenName();
-
     @StringRes
     protected abstract int getTitleRes();
 
-    protected abstract int getNavigationType();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,7 +88,15 @@ public abstract class BaseActivity extends AppCompatActivity {
                     actionBar.setDisplayHomeAsUpEnabled(false);
                     break;
             }
-
         }
+    }
+
+    @MenuRes
+    protected int getMenuRes() {
+        return Constants.NO_RES;
+    }
+
+    protected int getNavigationType() {
+        return Constants.NO_RES;
     }
 }

@@ -35,11 +35,6 @@ public final class FollowingFragment extends BaseFragment
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     public void setViewModel(@NonNull FollowingViewModel viewModel) {
         this.mViewModel = viewModel;
     }

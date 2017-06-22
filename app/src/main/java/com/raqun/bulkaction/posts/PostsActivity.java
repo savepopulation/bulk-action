@@ -43,23 +43,8 @@ public final class PostsActivity extends BaseActivity {
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
-    protected int getScreenName() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     protected int getTitleRes() {
         return R.string.title_posts;
-    }
-
-    @Override
-    protected int getNavigationType() {
-        return NAVIGATION_BACK;
     }
 
     @Override
