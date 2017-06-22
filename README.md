@@ -9,6 +9,7 @@ In this repo you can find an example solution for this challange.
 * DataBinding<br>
 * RxJava 2.0<br>
 * Dagger 2.1<br>
+* Repository Pattern<br>
 * Instagram Api<br>
 
 
